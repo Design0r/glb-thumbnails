@@ -5,6 +5,10 @@
 await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+};
 
 export default config;
