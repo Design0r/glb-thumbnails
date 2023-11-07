@@ -1,6 +1,10 @@
-import "@google/model-viewer";
 import { useEffect, useRef, useState } from "react";
 import { useFileStore } from "~/ts/state";
+import dynamic from "next/dynamic";
+
+const ModelViewerNoSSR = dynamic(() => import("@google/model-viewer"), {
+  ssr: false,
+});
 
 interface ModelViewerProps {
   name: string;
@@ -43,8 +47,8 @@ export const ModelViewer: React.FC<ModelViewerProps> = ({ name, path }) => {
   }, [download]);
 
   return (
-    <model-viewer
-      ref={ref}
+    <ModelViewerNoSSR
+      id="test"
       className="h-100% w-100% justify-center align-middle"
       src={path}
       shadowIntensity="1"
@@ -52,6 +56,6 @@ export const ModelViewer: React.FC<ModelViewerProps> = ({ name, path }) => {
       auto-rotate
       cameraOrbit="-56.87deg 72.12deg 17.45m"
       fieldOfView="30deg"
-    ></model-viewer>
+    ></ModelViewerNoSSR>
   );
 };

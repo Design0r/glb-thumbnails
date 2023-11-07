@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useFileStore } from "~/ts/state";
 import { ModelViewer } from "./ModelViewer";

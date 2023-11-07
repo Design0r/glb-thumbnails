@@ -1,11 +1,9 @@
 "use client";
+
 import React from "react";
 import { useFileStore } from "~/ts/state";
 import { FileBox } from "./FileBox";
-// Define props type if you have props to pass in, for example
-// interface ResponsiveGridProps {
-//   // Define your prop types here
-// }
+import { CreateThumbnailButton } from "./Download";
 
 const FileGrid: React.FC = () => {
   const { files } = useFileStore();
@@ -17,6 +15,7 @@ const FileGrid: React.FC = () => {
           <FileBox name={item.name} key={index} index={index} />
         ))}
       </div>
+      {files.length > 0 && <CreateThumbnailButton />}
     </div>
   );
 };
