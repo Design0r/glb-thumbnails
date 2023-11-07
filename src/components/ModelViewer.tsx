@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useFileStore } from "~/ts/state";
-import dynamic from "next/dynamic";
-
-const ModelViewerNoSSR = dynamic(() => import("@google/model-viewer"), {
-  ssr: false,
-});
 
 interface ModelViewerProps {
   name: string;
@@ -27,6 +22,10 @@ export const ModelViewer: React.FC<ModelViewerProps> = ({ name, path }) => {
   const { download } = useFileStore();
 
   useEffect(() => {
+    import("@google/model-viewer").catch(console.error);
+  }, []);
+
+  useEffect(() => {
     const modelViewer = ref.current;
 
     if (modelViewer) {
@@ -47,15 +46,17 @@ export const ModelViewer: React.FC<ModelViewerProps> = ({ name, path }) => {
   }, [download]);
 
   return (
-    <ModelViewerNoSSR
-      id="test"
-      className="h-100% w-100% justify-center align-middle"
-      src={path}
-      shadowIntensity="1"
-      camera-controls
-      auto-rotate
-      cameraOrbit="-56.87deg 72.12deg 17.45m"
-      fieldOfView="30deg"
-    ></ModelViewerNoSSR>
+    <div className="h-64 w-full ">
+      <model-viewer
+        style={{ width: "100%", height: "100%" }}
+        ref={ref}
+        src={path}
+        shadowIntensity="1"
+        camera-controls
+        auto-rotate
+        cameraOrbit="-56.87deg 72.12deg 17.45m"
+        fieldOfView="30deg"
+      ></model-viewer>
+    </div>
   );
 };

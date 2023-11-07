@@ -76,8 +76,8 @@ const FileDropField: React.FC = () => {
 
   return (
     <div
-      className="  h-full w-full cursor-pointer rounded-lg border-2 border-dashed
-        border-slate-100 bg-opacity-50 p-6 text-center" // Fixed width and height classes
+      className="h-full  w-full cursor-pointer select-none rounded-lg border-2 border-dashed
+        border-slate-100 bg-opacity-50 p-6 text-center shadow-lg shadow-slate-900" // Fixed width and height classes
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
