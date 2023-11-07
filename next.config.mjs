@@ -9,6 +9,10 @@ const config = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default config;
